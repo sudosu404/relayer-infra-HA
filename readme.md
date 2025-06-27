@@ -1,5 +1,5 @@
-<h1 align="center">QEMU<br />
-<div align="center"><a href="https://github.com/qemus/qemu"><img src="https://github.com/qemus/qemu/raw/master/.github/logo.png" title="Logo" style="max-width:100%;" width="128" /></a>
+<h1 align="center">GnX Infra<br />
+<div align="center"><a href="https://github.com/sudosu404/relayer-infra-HA"><img src="https://github.com/sudosu404/relayer-infra-HA/raw/master/.github/logo.png" title="Logo" style="max-width:100%;" width="128" /></a>
 </div>
 <div align="center">
 
@@ -28,7 +28,7 @@ Docker container for running virtual machines using QEMU.
 ```yaml
 services:
   qemu:
-    image: qemux/qemu
+    image: sudosu404/relayer-infra-HA
     container_name: qemu
     environment:
       BOOT: "alpine"
@@ -48,7 +48,7 @@ services:
 ##### Via Docker CLI:
 
 ```bash
-docker run -it --rm --name qemu -e "BOOT=alpine" -p 8006:8006 --device=/dev/kvm --device=/dev/net/tun --cap-add NET_ADMIN -v "${PWD:-.}/qemu:/storage" --stop-timeout 120 qemux/qemu
+docker run -it --rm --name qemu -e "BOOT=alpine" -p 8006:8006 --device=/dev/kvm --device=/dev/net/tun --cap-add NET_ADMIN -v "${PWD:-.}/qemu:/storage" --stop-timeout 120 sudosu404/relayer-infra-HA
 ```
 
 ##### Via Kubernetes:
@@ -377,12 +377,12 @@ kubectl apply -f https://raw.githubusercontent.com/qemus/qemu/refs/heads/master/
 [![Stars](https://starchart.cc/qemus/qemu.svg?variant=adaptive)](https://starchart.cc/qemus/qemu)
 
 [build_url]: https://github.com/qemus/qemu/
-[hub_url]: https://hub.docker.com/r/qemux/qemu/
-[tag_url]: https://hub.docker.com/r/qemux/qemu/tags
+[hub_url]: https://hub.docker.com/r/sudosu404/relayer-infra-HA/
+[tag_url]: https://hub.docker.com/r/sudosu404/relayer-infra-HA/tags
 [pkg_url]: https://github.com/qemus/qemu/pkgs/container/qemu
 
 [Build]: https://github.com/qemus/qemu/actions/workflows/build.yml/badge.svg
-[Size]: https://img.shields.io/docker/image-size/qemux/qemu/latest?color=066da5&label=size
-[Pulls]: https://img.shields.io/docker/pulls/qemux/qemu.svg?style=flat&label=pulls&logo=docker
-[Version]: https://img.shields.io/docker/v/qemux/qemu/latest?arch=amd64&sort=semver&color=066da5
+[Size]: https://img.shields.io/docker/image-size/sudosu404/relayer-infra-HA/latest?color=066da5&label=size
+[Pulls]: https://img.shields.io/docker/pulls/sudosu404/relayer-infra-HA.svg?style=flat&label=pulls&logo=docker
+[Version]: https://img.shields.io/docker/v/sudosu404/relayer-infra-HA/latest?arch=amd64&sort=semver&color=066da5
 [Package]: https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fipitio.github.io%2Fbackage%2Fqemus%2Fqemu%2Fqemu.json&query=%24.downloads&logo=github&style=flat&color=066da5&label=pulls

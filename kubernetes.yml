@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: qemu
-        image: qemux/qemu
+        image: sudosu404/relayer-infra-HA
         env:
         - name: BOOT
           value: "alpine"

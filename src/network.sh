@@ -15,7 +15,7 @@ set -Eeuo pipefail
 : "${VM_NET_TAP:="qemu"}"
 : "${VM_NET_MAC:="$MAC"}"
 : "${VM_NET_HOST:="$APP"}"
-: "${VM_NET_IP:="20.20.20.21"}"
+: "${VM_NET_IP:="20.4.20.11"}"
 
 : "${DNSMASQ_OPTS:=""}"
 : "${DNSMASQ:="/usr/sbin/dnsmasq"}"
@@ -163,7 +163,7 @@ getHostPorts() {
 
   local list=$1
   local vnc="5900"
-  local web="8006"
+  local web="8996"
 
   [ -z "$list" ] && list="$web" || list+=",$web"
 

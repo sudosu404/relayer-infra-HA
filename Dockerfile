@@ -53,12 +53,12 @@ COPY --chmod=664 ./web/conf/defaults.json /usr/share/novnc
 COPY --chmod=664 ./web/conf/mandatory.json /usr/share/novnc
 COPY --chmod=744 ./web/conf/nginx.conf /etc/nginx/sites-enabled/web.conf
 
-VOLUME /tmp/.storage
+VOLUME /storage
 EXPOSE 22 5900 8996
 
 ENV BOOT="/tmp/.storage/boot.iso"
 ENV CPU_CORES="7"
-ENV RAM_SIZE="6G"
+ENV RAM_SIZE="7G"
 ENV DISK_SIZE="40G"
 
 ENTRYPOINT ["/usr/bin/tini", "-s", "/run/entry.sh"]

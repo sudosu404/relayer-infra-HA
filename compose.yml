@@ -1,17 +1,20 @@
+version: '3.8'
 services:
-  qemu:
-    image: qemux/qemu
-    container_name: qemu
-    environment:
-      BOOT: "alpine"
-    devices:
-      - /dev/kvm
-      - /dev/net/tun
-    cap_add:
-      - NET_ADMIN
+  relayer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: relayer-infra-ha:latest
+    container_name: relayer-infra-ha
     ports:
-      - 8006:8006
+      - "22:22"
+      - "5900:5900"
+      - "8996:8996"
     volumes:
-      - ./qemu:/storage
-    restart: always
-    stop_grace_period: 2m
+      - /tmp/.storage:/storage
+    environment:
+      - BOOT=/tmp/.storage/boot.iso
+      - CPU_CORES=7
+      - RAM_SIZE=5G
+      - DISK_SIZE=40G
+    restart: unless-stopped
