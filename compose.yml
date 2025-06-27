@@ -13,8 +13,8 @@ services:
     volumes:
       - /tmp/.storage:/storage
     environment:
-      - BOOT=/tmp/.storage/boot.iso
-      - CPU_CORES=7
-      - RAM_SIZE=5G
-      - DISK_SIZE=40G
+      - KVM="N"
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
     restart: unless-stopped
