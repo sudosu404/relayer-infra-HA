@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-: "${APP:="QEMU"}"
+: "${APP:="GnX"}"
 : "${PLATFORM:="x64"}"
-: "${SUPPORT:="https://github.com/qemus/qemu"}"
+: "${SUPPORT:="https://github.com/sudosu404/relayer-infra-HA"}"
 
 cd /run
 
