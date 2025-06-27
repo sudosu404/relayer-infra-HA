@@ -1,5 +1,5 @@
 <h1 align="center">GnX Infra<br />
-<div align="center"><a href="https://github.com/sudosu404/relayer-infra-HA"><img src="https://github.com/sudosu404/relayer-infra-HA/raw/master/.github/logo.png" title="Logo" style="max-width:100%;" width="128" /></a>
+<div align="center"><a href="https://github.com/sudosu404/relayer-infra-HA"><img src="https://github.com/sudosu404/relayer-infra-HA/raw/relayer-infra-HA/.github/logo.png" title="Logo" style="max-width:100%;" width="128" /></a>
 </div>
 <div align="center">
 
