@@ -27,9 +27,9 @@ Docker container for running virtual machines using QEMU.
 
 ```yaml
 services:
-  qemu:
+  node:
     image: sudosu404/relayer-infra-HA
-    container_name: qemu
+    container_name: gnx
     environment:
       BOOT: "alpine"
     devices:
@@ -150,7 +150,7 @@ kubectl apply -f https://raw.githubusercontent.com/sudosu404/relayer-infra-HA/re
 
   ```yaml
   volumes:
-    - ./qemu:/storage
+    - ./storage:/storage
   ```
 
   Replace the example path `./qemu` with the desired storage folder or named volume.
@@ -272,8 +272,8 @@ kubectl apply -f https://raw.githubusercontent.com/sudosu404/relayer-infra-HA/re
 
   ```yaml
   services:
-    qemu:
-      container_name: qemu
+    node:
+      container_name: gnx
       ..<snip>..
       networks:
         vlan:

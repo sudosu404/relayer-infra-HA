@@ -1,20 +1,46 @@
-version: '3.8'
 services:
-  relayer:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: relayer-infra-ha:latest
-    container_name: relayer-infra-ha
-    ports:
-      - "22:22"
-      - "5900:5900"
-      - "8996:8996"
+  node:
+    build: ./gnx-infra
+    image: node:latest
+    container_name: node
+    devices:
+      - /dev/net
+      - /dev/vhost-net
+      - /dev/vhost-vsock
+      - /dev/ttyS0
+      - /dev/uinput
+      - /dev/sda
+      - /dev/sdb
+      - /dev/sdc
+      - /dev/fuse
+      - /dev/ptmx
+      - /dev/kvm
+      - /dev/hwrng
+      - /dev/fuse
+    device_cgroup_rules:
+      - 'c *:* rwm'
     volumes:
-      - /tmp/.storage:/storage
+      - ./gnx-infra/.storage:/storage
+    restart: always
+    stop_grace_period: 2m
+    depends_on:
+      - ts
+    network_mode: service:ts
+  ts:
+    image: tailscale/tailscale:latest
+    hostname: tty-gnx
     environment:
-      - KVM="N"
+      - TS_AUTHKEY=${TS_AUTHKEY}
+      - TS_EXTRA_ARGS=--ssh
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_USERSPACE=false
+      - TS_SERVE_CONFIG=./gnx-infra/conf/ts-gnx.json
+    volumes:
+      - ./gnx-infra/.storage/ts/state:/var/lib/tailscale
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    dns:
+      - 10.4.20.3
     cap_add:
-      - NET_ADMIN
-      - SYS_ADMIN
+      - net_admin
     restart: unless-stopped

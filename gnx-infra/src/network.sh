@@ -12,10 +12,10 @@ set -Eeuo pipefail
 : "${ADAPTER:="virtio-net-pci"}"
 
 : "${VM_NET_DEV:=""}"
-: "${VM_NET_TAP:="qemu"}"
+: "${VM_NET_TAP:="qemunet"}"
 : "${VM_NET_MAC:="$MAC"}"
 : "${VM_NET_HOST:="$APP"}"
-: "${VM_NET_IP:="20.4.20.11"}"
+: "${VM_NET_IP:="20.20.20.21"}"
 
 : "${DNSMASQ_OPTS:=""}"
 : "${DNSMASQ:="/usr/sbin/dnsmasq"}"
@@ -163,7 +163,7 @@ getHostPorts() {
 
   local list=$1
   local vnc="5900"
-  local web="8996"
+  local web="8006"
 
   [ -z "$list" ] && list="$web" || list+=",$web"
 

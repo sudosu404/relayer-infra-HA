@@ -1,6 +1,6 @@
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
 
-ARG VERSION_ARG="0.0.3b"
+ARG VERSION_ARG="0.1.13b"
 ARG VERSION_VNC="1.6.0"
 
 ARG DEBCONF_NOWARNINGS="yes"
@@ -10,6 +10,7 @@ ARG DEBCONF_NONINTERACTIVE_SEEN="true"
 RUN set -eu && \
     apt-get update && \
     apt-get --no-install-recommends -y install \
+        supervisor \
         bc \
         jq \
         tini \
@@ -35,6 +36,7 @@ RUN set -eu && \
     apt-get clean && \
     mkdir -p /etc/qemu && \
     echo "allow br0" > /etc/qemu/bridge.conf && \
+    touch /etc/supervisor/conf.d/supervisord.conf && \
     wget "https://snapshot.debian.org/archive/debian/20250128T092032Z/pool/main/e/edk2/ovmf_2024.11-5_all.deb" -O /tmp/ovmf.deb -q --timeout=10 && \
     dpkg -i /tmp/ovmf.deb && \
     mkdir -p /usr/share/novnc && \
@@ -52,13 +54,18 @@ COPY --chmod=755 ./web /var/www/
 COPY --chmod=664 ./web/conf/defaults.json /usr/share/novnc
 COPY --chmod=664 ./web/conf/mandatory.json /usr/share/novnc
 COPY --chmod=744 ./web/conf/nginx.conf /etc/nginx/sites-enabled/web.conf
+COPY --chmod=644 ./conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-VOLUME /storage
-EXPOSE 22 5900 8996
-
-ENV BOOT="/tmp/.storage/boot.iso"
-ENV CPU_CORES="4"
-ENV RAM_SIZE="12G"
-ENV DISK_SIZE="40G"
+ENV BOOT="./.storage/boot.iso"
+ENV CPU_CORES="6"
+ENV RAM_SIZE="10G"
+ENV MACHINE=q35
+ENV GPU=N
+ENV KVM=Y
+ENV DISK_SIZE=172G
+ENV DISK_FMT=qcow2
+ENV DISK_TYPE=scsi
+ENV DISK_IO=threads
+ENV VM_NET_IP="10.4.20.99"
 
 ENTRYPOINT ["/usr/bin/tini", "-s", "/run/entry.sh"]

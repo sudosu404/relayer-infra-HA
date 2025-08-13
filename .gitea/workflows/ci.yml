@@ -1,4 +1,4 @@
-# .gitea/workflows/ci.yml
+# .github/workflows/ci.yml
 # Compatible con Gitea Actions y GitHub Actions para CI/CD DevSecOps
 # Ejecuta pruebas, lint, build de imagen y despliegue opcional
 
@@ -6,13 +6,13 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ gnx-labs-realesev0.0.33b ]
+    branches: [ gnx-labs-realesev0.1.13b ]
   pull_request:
-    branches: [ gnx-labs-realesev0.0.33b ]
+    branches: [ gnx-labs-realesev0.1.13b ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: debian-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -34,4 +34,4 @@ jobs:
 # - Usa secrets para credenciales.
 # - Automatiza pruebas de seguridad y compliance.
 # - Considera steps para despliegue en staging/prod.
-# - init.sh puede usarse para setup, test y validación automatizada.
+# - init.sh puede usarse para setup, test y validación automatizada de momento WIP.

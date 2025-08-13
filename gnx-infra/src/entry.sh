@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-: "${APP:="GnX"}"
+: "${APP:="GNX"}"
 : "${PLATFORM:="x64"}"
-: "${SUPPORT:="https://github.com/sudosu404/relayer-infra-HA"}"
+: "${SUPPORT:="https://github.com/sudosu404"}"
 
 cd /run
 
