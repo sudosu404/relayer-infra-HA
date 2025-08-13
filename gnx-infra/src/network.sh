@@ -12,7 +12,7 @@ set -Eeuo pipefail
 : "${ADAPTER:="virtio-net-pci"}"
 
 : "${VM_NET_DEV:=""}"
-: "${VM_NET_TAP:="qemu"}"
+: "${VM_NET_TAP:="qemunet"}"
 : "${VM_NET_MAC:="$MAC"}"
 : "${VM_NET_HOST:="$APP"}"
 : "${VM_NET_IP:="20.20.20.21"}"

@@ -1,0 +1,37 @@
+# .github/workflows/ci.yml
+# Compatible con Gitea Actions y GitHub Actions para CI/CD DevSecOps
+# Ejecuta pruebas, lint, build de imagen y despliegue opcional
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ gnx-labs-realesev0.1.13b ]
+  pull_request:
+    branches: [ gnx-labs-realesev0.1.13b ]
+
+jobs:
+  build:
+    runs-on: debian-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build Docker image
+        run: docker build -t relayer-infra-ha:ci .
+      # - name: Run tests (agrega aquí tus pruebas)
+      #   run: ./init.sh --test
+      # - name: Lint (agrega aquí tu linter preferido)
+      #   run: shellcheck ./init.sh
+      # - name: Push image (opcional, requiere secrets)
+      #   run: |
+      #     echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      #     docker push relayer-infra-ha:ci
+
+# Notas para DevSecOps:
+# - Integra escaneo de vulnerabilidades con trivy o grype.
+# - Usa secrets para credenciales.
+# - Automatiza pruebas de seguridad y compliance.
+# - Considera steps para despliegue en staging/prod.
+# - init.sh puede usarse para setup, test y validación automatizada de momento WIP.
