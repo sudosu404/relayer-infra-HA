@@ -57,10 +57,9 @@ COPY --chmod=744 ./web/conf/nginx.conf /etc/nginx/sites-enabled/web.conf
 COPY --chmod=644 ./conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ENV BOOT="./.storage/boot.iso"
-ENV CPU_CORES="6"
+ENV CPU_CORES="4"
 ENV RAM_SIZE="10G"
 ENV MACHINE=q35
-ENV GPU=N
 ENV KVM=Y
 ENV DISK_SIZE=172G
 ENV DISK_FMT=qcow2
